@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mini Cart</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&effect=shadow-multiple">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href=
+"https://p1.hiclipart.com/preview/469/940/964/shopping-cart-shopping-bag-online-shopping-retail-shopping-centre-grocery-store-logo-png-clipart.jpg"
+          type="image/x-icon">
+          <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-ios.css">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{% static 'css/contact.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/footer.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/adcard.css' %}" rel="stylesheet" />
+
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-toggleable-md navbar-dark">
+        <div class="container">
+           <button class="navbar-toggler navbar-toggler-right btn btn-outline-danger" type="button " data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation"><i class="bi bi-list"></i></button> 
+          <a class="navbar-brand" href="#" style="font-family: 'Kalam', cursive;font-size: 2rem;"><strong><i class="bi bi-cart4" style="color: red;"></i>Mini Cart</strong></a>
+          <div class="collapse navbar-collapse" id="navbarNav1">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link"href="{% url "home"  %}" >Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "product" "smartphone" %}" >Mobiles</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "product" "laptops" %}" >Laptops</a>
+              </li>
+              <li class="nav-item dropdown btn-group">
+                <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Products</a>
+                <div class="dropdown-menu dropdown bg-dark " aria-labelledby="dropdownMenu1">
+                  <a class="text-light btn btn-sm" href="{% url "product" "smartwatch" %}">Smart Watch</a>
+                  <a class=""></a>
+                  <a class=""></a>
+                </div>
+              </li>
+              {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "account"  %}" >Account</a>
+              </li>
+                <li class="nav-item">
+                  <form action="{% url 'logout' %}" method="POST">
+                    {% csrf_token %}
+
+                    <button class="nav-link btn-danger" type="Submit">Logout</button>
+                  </form>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "login"  %}" >Login</a>
+                </li>
+              {% endif %}
+            </ul>
+            <form class="form-inline waves-effect waves-light d-flex" method="get"  action="{% url "search" %}" >
+              {% csrf_token %}
+              <div class="input-group align-items-center ">
+                <input type="text" class="form-control text-dark" placeholder="Search Products" aria-label="Recipient's username" aria-describedby="button-addon2" name="name" required>
+                <button class="btn" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
+              </div>
+              
+            </form>
+          </div>
+        </div>
+      </nav>
+      <!-- /.Navbar -->
+    </header>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <!-- Footer -->
+   <footer class="footer ">
+		<div class="container row" >
+			<div class="footer-col col">
+				<h4>company</h4>
+				<ul>
+					<li><a href="#">about us</a></li>
+					<li><a href="#">our services</a></li>
+					<li><a href="#">privacy policy</a></li>
+					<li><a href="#">visit website</a></li>
+				</ul>
+			</div>
+			<div class="footer-col col">
+				<h4>get help</h4>
+				<ul>
+					<li><a href="#">FAQ</a></li>
+					<li><a href="#">shipping</a></li>
+					<li><a href="#">returns</a></li>
+					<li><a href="#">order status</a></li>
+					<li><a href="#">payment options</a></li>
+				</ul>
+			</div>
+			<div class="footer-col col">
+				<h4>online shop</h4>
+				<ul>
+					<li><a href="#">download</a></li>
+					<li><a href="#">changelog</a></li>
+					<li><a href="#">github</a></li>
+					<li><a href="#">all version</a></li>
+				</ul>
+			</div>
+			<div class="footer-col col">
+				<h4>follow us</h4>
+				<div class="social-links">
+					<a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+					<a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+					<a href="#"><i class="fa-brands fa-instagram"></i></a>
+					<a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+				</div>
+			</div>
+		</div>
+	</footer>
+    <!-- /.Footer -->
+    <script src="{% static 'js/validation.js' %}"></script>
+    <script src="{% static 'js/interactive.js' %}"></script>
+    <script src="https://kit.fontawesome.com/3b161c540c.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/js/mdb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      new WOW().init()
+    </script>
+  </body>
+</html>

@@ -1,0 +1,285 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% load static %}
+  <!-- Section 1 -->
+  <div class="main-body">
+    <section id="section1">
+      <div class="container pt-3">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+          <div class="carousel-inner">
+            {% for bann in banner %}
+            <div class="carousel-item{% if forloop.first %} active{% endif %}">
+              <img src="{{bann.img.url}}" class="d-block w-100 rounded" height="300px" alt="Banner {{ forloop.counter }}" loading="lazy" />
+            </div>
+            {% endfor %}
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <div class="container">
+        <div class="row gap-3 justify-content-center">
+          <div class="col-md-3 border rounded p-2" data-tooltip="Free delivery across India">
+            <div class="d-block">
+              <i class="bi bi-cart-fill text-warning fs-1"></i>
+              <span class="text-success fw-bold d-block mt-2">100% Free Delivery</span>
+            </div>
+            <p class="mb-0">We Offer Free Delivery All Over India</p>
+          </div>
+          <div class="col-md-3 border rounded p-2" data-tooltip="Quality assured products">
+            <div class="d-block">
+              <i class="bi bi-patch-check-fill text-warning fs-1"></i>
+              <span class="text-success fw-bold d-block mt-2">Verified Products</span>
+            </div>
+            <p class="mb-0">Products Verified By Our Team</p>
+          </div>
+          <div class="col-md-3 border rounded p-2" data-tooltip="Guaranteed cashback offers">
+            <div class="d-block">
+              <i class="bi bi-cash-coin text-warning fs-1"></i>
+              <span class="text-success fw-bold d-block mt-2">100% Assured Cashbacks</span>
+            </div>
+            <p class="mb-0">Assured Cashbacks On Specific Products</p>
+          </div>
+          <div class="col-md-2 border rounded p-2" data-tooltip="Try before you buy">
+            <div class="d-block">
+              <i class="bi bi-box2-heart-fill text-warning fs-1"></i>
+              <span class="text-success fw-bold d-block mt-2">Open Box Delivery</span>
+            </div>
+            <p class="mb-0">Open Box Delivery Available</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Popular Components -->
+     <div class="div-pop rounded">
+      <div class="pt-3 container">
+        <h1 class="popular">Popular SmartPhones</h1>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+              {% for mob in mobiles %}
+              <a class="nav-link" href="{% url "product" "smartphone" %}" aria-label="View {{ mob.pro_name }}">
+              <div class="col item">
+                <div class="card popular-card h-100">
+                  <img src="{{mob.pro_image.url}}" class="card-img-top popular-img" alt="{{ mob.pro_name }}" loading="lazy" />
+                  <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{mob.pro_name}}</h5>
+                    <p class="card-text flex-grow-1">{{mob.pro_desc}}</p>
+                    <p class="card-text fs-5 fw-bold text-primary">Rs {{mob.pro_price}}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-3 container">
+          <h1 class="popular">Popular Laptops</h1>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row row-cols-1 row-cols-md-4 g-4">
+                {% for mob in laptop %}
+                <a class="nav-link" href="{% url "product" "laptops" %}" aria-label="View {{ mob.pro_name }}">
+                <div class="col item">
+                  <div class="card popular-card-lap h-100">
+                    <img src="{{mob.pro_image.url}}" class="card-img-top popular-img" alt="{{ mob.pro_name }}" loading="lazy" />
+                    <div class="card-body d-flex flex-column">
+                      <h5 class="card-title">{{mob.pro_name}}</h5>
+                      <p class="card-text flex-grow-1">{{mob.pro_desc}}</p>
+                      <p class="card-text fs-5 fw-bold text-primary">Rs {{mob.pro_price}}</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+     </div>
+      <!-- /.Main layout -->
+    </main>
+  </div>
+  <!--Section2-->
+  <div class="sec2">
+    <img src="{% static 'Images/newyear.jpg' %}" alt="New Year Special Offer" width="100%" class="rounded" height="250px" loading="lazy">
+  </div>
+
+  <div class="div-blogs">
+    <div class="container pt-3">
+     <div class="d-flex align-items-center justify-content-between p-3 flex-wrap">
+       <h1 class="popular">Blogs</h1>
+       <a href="{% url "createblogs" %}" class="btn btn-secondary btn-lg" aria-label="Create a new blog post">
+         Create Blog <i class="bi bi-pencil-square text-danger ms-2"></i>
+       </a>
+     </div>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {% for val in blog %}
+      <div class="col">
+        <div class="card mb-3 shadow border-warning h-100">
+          <div class="row g-0 h-100">
+            <div class="col-md-4 d-flex align-items-center justify-content-center">
+              <img src="{{val.image.url}}" class="img-fluid rounded-start" alt="{{ val.title }}" loading="lazy" style="max-height: 200px; object-fit: cover;">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body d-flex flex-column h-100">
+                <h5 class="card-title text-capitalize">{{val.title}}</h5>
+                <p class="card-text flex-grow-1">{{val.description|truncatechars:150}}</p>
+                <div class="mt-auto">
+                  <p class="mb-1">By <span class="fw-bold text-primary text-capitalize">{{ val.username.get_username }}</span></p>
+                  <p class="card-text"><small class="text-body-secondary">Posted on {{val.postedate}}</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="{% url 'allblogs' %}" class="btn btn-secondary btn-lg w3-animate-fading" aria-label="View all blog posts">See All Blogs</a>
+    </div>
+  </div>
+  </div>
+
+
+
+  <div class="container">
+    <!--Carousel-->
+    <div class="d-flex align-items-center justify-content-between p-3 flex-wrap">
+      <h1 class="popular">Customer Reviews</h1>
+      <div class="w3-container">
+        <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-green w3-large rounded btn btn-success" aria-label="Add a customer review">
+          <i class="fas fa-plus me-2"></i>Add Review
+        </button>
+
+        <div id="id01" class="w3-modal" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+          <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+
+            <div class="w3-center"><br>
+              <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal" aria-label="Close">&times;</span>
+              <img src="https://www.w3schools.com/w3css/img_avatar4.png" alt="User Avatar" style="width:30%" class="w3-circle w3-margin-top">
+            </div>
+
+            <form class="w3-container" action="{% url "addreview" %}" method="post" role="form">
+              {% csrf_token %}
+              <div class="w3-section">
+                <label for="usrname"><b>Name</b></label>
+                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="usrname" id="usrname" required value="{% if request.user.is_authenticated %}{{request.user}}{% endif %}" aria-required="true">
+                <label for="comment"><b>Enter Your Review</b></label>
+                <input class="w3-input w3-border" type="text" placeholder="Enter Review" name="comment" id="comment" required aria-required="true">
+                <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit" aria-label="Submit review">
+                  <i class="fas fa-paper-plane me-2"></i>Add Review
+                </button>
+              </div>
+            </form>
+
+            <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+              <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red" aria-label="Cancel">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+                
+
+
+<div id="reviewsCarousel" class="carousel slide mt-5 mb-3" data-bs-ride="carousel" data-bs-interval="5000">
+  <div class="carousel-inner">
+    {% for rev in review %}
+    <div class="carousel-item{% if forloop.first %} active{% endif %} w3-ios-background p-4 rounded">
+      <div class="text-center">
+        <i class="fas fa-quote-left text-primary fs-1 mb-3"></i>
+        <p class="w3-monospace fs-5 mb-3">{{rev.review}}</p>
+        <h6 class="text-capitalize fw-bold mb-2">{{rev.username}}</h6>
+        <p class="text-muted"><small>Posted on {{rev.postedon}}</small></p>
+        <i class="fas fa-quote-right text-primary fs-1 mt-3"></i>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% if review|length > 1 %}
+  <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev" aria-label="Previous review">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next" aria-label="Next review">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+  {% endif %}
+</div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <form action="" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" method="post" role="form">
+          {% csrf_token %}
+          <h2 class="w3-center mb-4">Contact Us</h2>
+
+          <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+              <div class="w3-rest">
+                <input class="w3-input w3-border" name="name" type="text" placeholder="Your Name" required aria-required="true" aria-label="Name">
+              </div>
+          </div>
+
+          <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
+              <div class="w3-rest">
+                <input class="w3-input w3-border" name="email" type="email" placeholder="Your Email" required aria-required="true" aria-label="Email">
+              </div>
+          </div>
+
+          <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-phone"></i></div>
+              <div class="w3-rest">
+                <input class="w3-input w3-border" name="phone" type="tel" placeholder="Your Phone" minlength="10" maxlength="10" required aria-required="true" aria-label="Phone">
+              </div>
+          </div>
+
+          <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
+              <div class="w3-rest">
+                <textarea class="w3-input w3-border" name="message" placeholder="Your Message" required aria-required="true" aria-label="Message" rows="4"></textarea>
+              </div>
+          </div>
+
+          <button class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding" type="submit" aria-label="Submit contact form">
+            <i class="fas fa-paper-plane me-2"></i>Send Message
+          </button>
+        </form>
+      </div>
+      <div class="col-lg-6 pt-3">
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15756.044504193987!2d76.72038294775639!3d9.153467054605148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b06117fd96592e3%3A0xdb10856f42d5c637!2sAdoor%2C%20Kerala!5e0!3m2!1sen!2sin!4v1701693335874!5m2!1sen!2sin" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded shadow" title="Our Location"></iframe>
+        </div>
+        {% for msg in messages %}
+        <div class="w3-panel w3-yellow w3-card-4 mt-3" role="alert">
+          <i class="fas fa-info-circle me-2"></i>{{msg}}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
