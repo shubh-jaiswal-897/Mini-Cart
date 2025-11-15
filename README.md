@@ -1,3 +1,6 @@
+,
+>>>>>>> b8f2c646db683e3171d896c7c2b8ac63cd943a7c
+=======
 # Minicart
 
 Minicart is a full-functional e-commerce website built with Django, inspired by platforms like Flipkart. It features user authentication, product catalog, shopping cart, checkout, and order management.
@@ -105,3 +108,6 @@ Feel free to fork the repository and submit pull requests for improvements.
 ## License
 
 This project is open-source and available under the MIT License.
+=======
+,
+>>>>>>> b8f2c646db683e3171d896c7c2b8ac63cd943a7c
